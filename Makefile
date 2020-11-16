@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -fPIC $(DEFINES)
-INCPATH       = -I. -I../../../Qt/5.12.6/gcc_64/mkspecs/linux-g++
+INCPATH       = -I. -Iextended/or-tools/include -I../../../Qt/5.12.6/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/modeck/Qt/5.12.6/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = tets1.0.0
 DISTDIR = /home/modeck/Documents/cpp/tets/.tmp/tets1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS)    
+LIBS          = $(SUBLIBS) -L/home/modeck/Documents/cpp/tets/extended/or-tools//lib -lglog -lgflags -lCbcSolver -lCbc -lOsiCbc -lCgl -lClpSolver -lClp -lOsiClp -lOsi -lCoinUtils -lortools -lz -lrt -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -602,7 +602,9 @@ compiler_clean:
 
 ####### Compile
 
-main.o: main.cpp math.h
+main.o: main.cpp math.h \
+		extended/extended.h \
+		extended/super/super.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 math.o: math.cpp math.h
