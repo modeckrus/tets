@@ -17,7 +17,15 @@ environment:
 install:
   - git submodule update --init --recursive
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - mkdir %LOCALAPPDATA%\QtProject && copy test\qtlogging.ini %LOCALAPPDATA%\QtProject\
+  - mkdir %LOCALAPPDATA%\QtProject
+    - ps: |
+      Write-Host "Installing Qt..." -ForegroundColor Cyan
+      $qt7zPath = "$($env:USERPROFILE)\Qt-QGC-5.12.6.7z"
+      Write-Host "Downloading..."
+      (New-Object Net.WebClient).DownloadFile('https://qgroundcontrol.s3-us-west-2.amazonaws.com/dependencies/Qt-QGC-5.12.6.7z', $qt7zPath)
+      Write-Host "Unzipping..."
+      cmd /c start /wait 7z x $qt7zPath -oC:\
+      Write-Host "Installed" -ForegroundColor Green
   - ps: |
       Write-Host "Installing ortools..." -ForegroundColor Cyan
       $zipPath = "$($env:USERPROFILE)\or-tools_VisualStudio2019-64bit_v8.0.8283.zip"
