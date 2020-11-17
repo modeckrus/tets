@@ -18,7 +18,7 @@ install:
   - git submodule update --init --recursive
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - mkdir %LOCALAPPDATA%\QtProject
-    - ps: |
+  - ps: |
       Write-Host "Installing Qt..." -ForegroundColor Cyan
       $qt7zPath = "$($env:USERPROFILE)\Qt-QGC-5.12.6.7z"
       Write-Host "Downloading..."
