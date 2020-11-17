@@ -28,7 +28,7 @@ install:
       Write-Host "Installed" -ForegroundColor Green
   - ps: |
       Write-Host "Installing ortools..." -ForegroundColor Cyan
-      $zipPath = "$($env:USERPROFILE)\or-tools_VisualStudio2019-64bit_v8.0.8283.zip"
+      $zipPath = "$($env:USERPROFILE)\or-tools_flatzinc_VisualStudio2019-64bit_v8.0.8283.zip"
       Write-Host "Downloading..."
       (New-Object Net.WebClient).DownloadFile('https://github.com/google/or-tools/releases/download/v8.0/or-tools_VisualStudio2019-64bit_v8.0.8283.zip', $zipPath)
       Write-Host "Unzippind..."
